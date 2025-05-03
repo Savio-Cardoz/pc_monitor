@@ -18,6 +18,7 @@
 
 #include "uart.h"
 #include "freertos/ringbuf.h"
+#include "fan.h"
 
 #if CONFIG_EXAMPLE_LCD_CONTROLLER_SH1107
 #include "esp_lcd_sh1107.h"
@@ -67,27 +68,6 @@ void recv_serial_data(const char *input_str, size_t data_len)
     {
         printf("Failed to send item\n");
     }
-
-    // // Test read from buffer
-    // size_t item_size;
-    // char *item = (char *)xRingbufferReceive(buf_handle, &item_size, pdMS_TO_TICKS(1000));
-    // // Check received item
-    // if (item != NULL)
-    // {
-    //     // Print item
-    //     for (int i = 0; i < item_size; i++)
-    //     {
-    //         printf("%c", item[i]);
-    //     }
-    //     printf("\n");
-    //     // Return Item
-    //     vRingbufferReturnItem(buf_handle, (void *)item);
-    // }
-    // else
-    // {
-    //     // Failed to receive item
-    //     printf("Failed to receive item\n");
-    // }
 }
 
 void app_main(void)
@@ -179,6 +159,7 @@ void app_main(void)
     ESP_LOGI(TAG, "Display LVGL Scroll Text");
 
     init_uart();
+    init_fan_control();
     register_app_event_callback(&recv_serial_data);
 
     example_lvgl_demo_ui(disp, buf_handle);

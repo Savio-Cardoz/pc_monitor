@@ -41,9 +41,9 @@ while 1:
     gpu = GPUtil.getGPUs()[0]
     
     A = f"{round(value,2):04}"
-    B = f"{round(psutil.cpu_percent(),2):04}"
+    B = f"{round(psutil.cpu_percent())}"
     C = f"{round(gpu.temperature,2):04}"
-    D = f"{round(gpu.load*100,2):04}"
+    D = f"{round(gpu.load*100)}"
     E = f"{current_time.strftime("%H:%M:%S")}"
     finalString = A + "," + B + "," + C + "," + D + "," + running + "," + E + "\n" #Create the String to send to arduino
     print(finalString)
