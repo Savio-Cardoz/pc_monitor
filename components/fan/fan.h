@@ -6,6 +6,8 @@
 #include "freertos/task.h"
 #include "freertos/semphr.h"
 #include "driver/ledc.h"
+#include "driver/pulse_cnt.h"
+#include "esp_log.h"
 #include "esp_err.h"
 
 #define LEDC_HS_TIMER LEDC_TIMER_0
@@ -16,5 +18,6 @@
 
 void init_fan_control();
 void update_fan_duty_cycle(uint8_t duty_percentage);
+void get_pulse_count(int *pulse_count);
 
 #endif
